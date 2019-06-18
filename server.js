@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGOURI, { useNewUrlParser: true }, (err) => {
     console.log('Conectado');
 });
 
-// Inicio de la app 
+// Inicio de la app
 app.listen(process.env.PORT, () => {
     console.log('Escuchando el puerto 3000');
 });

@@ -1,45 +1,41 @@
-
 {{> head }}
-<body>
 
     {{> nav}}
-    <a class="btn btn-success" style="margin: 20px" data-toggle="modal" data-target="#exampleModal">Agregar Producto</a>
+    <a class="btn btn-success text-light" style="margin: 20px" data-toggle="modal" data-target="#exampleModal">Agregar Producto</a>
     {{> modal}}
-    <table class="table table-hover table-light">
-        <thead> 
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">PrecioUnitario</th>
-                <th scope="col">Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each productos}}
-            <tr>
-                <th scope="row">{{@index}}</th>
-                <td>{{this.nombre}}</td>
-                <td>{{this.descripcion}}</td>
-                <td>{{this.precioUnitario}}</td>
-                <td><a class="btn btn-primary" href="/producto/{{this._id}}">Actualizar</a> <a class="btn btn-danger" href="/delete/{{this.id}}">Eliminar</a></td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-hover table-light">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Precio Unitario</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each productos}}
+                        <tr>
+                            <th scope="row">{{@index}}</th>
+                            <td>{{this.nombre}}</td>
+                            <td>{{this.descripcion}}</td>
+                            <td>{{this.precioUnitario}}</td>
+                            <td><a class="btn btn-primary" href="/producto/{{this._id}}">Actualizar</a> <a class="btn btn-danger" href="/delete/{{this.id}}">Eliminar</a></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
 
-
-
-
+            </div>
+        </div>
+    </div>
     <!--Boostrap Js, Popper y Jquery-->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="assets/js/bootstrap.min.js"></script>
 </body>
-
 </html>
