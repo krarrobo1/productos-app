@@ -18,7 +18,6 @@ async function crearProducto(body) {
         descripcion: body.descripcion,
         precioUnitario: body.precioUnitario
     });
-
     let producto = await nuevoProducto.save();
     return producto;
 }
@@ -27,61 +26,26 @@ async function crearProducto(body) {
 
 
 async function obtenerTodosLosProductos() {
-    let productos = await Producto.find({}, async(err, productosDB) => {
-        if (err) {
-            throw err;
-        }
-        if (!productosDB) throw new Error('No se encontraron productos');
-        console.log('Productos recuperados');
-    });
+    let productos = await Producto.find({});
     return productos;
 }
 
 
-
 async function obtenerProductoPorId(id) {
-    let producto = await Producto.findById(id, (err, productoDB) => {
-        if (err) {
-            throw err;
-        }
-        if (!productoDB) throw new Error('No se encontro producto con esa ID');
-        console.log('Productos recuperado');
-    });
+    let producto = await Producto.findById(id);
     return producto;
 };
 
 async function editarProducto(id, body) {
-    let productoEditado = await Producto.findByIdAndUpdate(id, body, { new: true }, (err, productoDB) => {
-        if (err) throw err;
-        if (!productoDB) throw new Error('No se encontro producto con ese ID');
-    });
-
+    let productoEditado = await Producto.updateOne({ _id: id }, body, { new: true });
     return productoEditado;
 }
 
 async function eliminarProducto(id) {
-    return await Producto.findByIdAndDelete(id, (err, productoDB) => {
-        if (err) throw err;
-        if (!productoDB) throw new Error('No se encontro producto con ese ID');
-    });
+    return await Producto.deleteOne({ _id: id });
 }
 
-//obtenerProductoPorId('5d0828179f9f84116b309569').then(producto => console.log('Mi prod', producto));
 
-//obtenerProductos().then(productos => console.log(productos));
-
-/*
-let body = {
-    nombre: 'Camiseta Blanca',
-    descripcion: 'Es de algodon',
-    precioUnitario: 13
-}*/
-
-
-//editarProducto('5d086924b621947bbdc501a8', { nombre: 'Camiseta Azul', precioUnitario: 10 });
-
-//eliminarProducto('5d0828179f9f84116b309569');
-//crearProducto(body);
 
 module.exports = {
     obtenerTodosLosProductos,

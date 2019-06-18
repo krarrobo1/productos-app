@@ -17,27 +17,21 @@ router.get('/producto/:id', async(req, res) => {
 router.post('/update/:id', async(req, res) => {
     let id = req.params.id;
     let body = req.body;
-    let producto = await editarProducto(id, body);
-    console.log('Producto editado satisfactoriamente.', producto);
+    await editarProducto(id, body);
     res.redirect('/')
 });
 
 router.post('/create', async(req, res) => {
     let body = req.body;
-    let producto = crearProducto(body);
-    console.log('Producto Creado');
+    await crearProducto(body);
     res.redirect('/');
 });
 
 router.get('/delete/:id', async(req, res) => {
-    try {
-        let id = req.params.id;
-        let productoEliminado = await eliminarProducto(id);
-        console.log('Producto Eliminardo');
-        res.redirect('/');
-    } catch (err) {
-        console.log(err);
-    }
+    let id = req.params.id;
+    await eliminarProducto(id);
+    res.redirect('/');
+
 });
 
 module.exports = router;
