@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 app.use(express.static(__dirname + '/public'));
 
 // Express.js HBS engine
-hbs.registerPartials(__dirname + '/parciales');
+hbs.registerPartials(__dirname + '/views/parciales');
 app.set('view engine', 'hbs');
 
 // Sirviendo la carpeta public
