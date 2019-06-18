@@ -1,38 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CRUD de Productos</title>
-
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
-
-</head>
-
+{{> head }}
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Crud de Productos</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Acerca de</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    {{> nav}}
+    <a class="btn btn-success" style="margin: 20px" data-toggle="modal" data-target="#exampleModal">Agregar Producto</a>
+    {{> modal}}
     <table class="table table-hover table-light">
-        <thead>
+        <thead> 
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
@@ -42,28 +16,15 @@
             </tr>
         </thead>
         <tbody>
+            {{#each productos}}
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><button type="button" class="btn btn-primary">Actualizar</button> <button type="button" class="btn btn-danger">Eliminar</button></td>
+                <th scope="row">{{@index}}</th>
+                <td>{{this.nombre}}</td>
+                <td>{{this.descripcion}}</td>
+                <td>{{this.precioUnitario}}</td>
+                <td><a class="btn btn-primary" href="/producto/{{this._id}}">Actualizar</a> <a class="btn btn-danger" href="/delete/{{this.id}}">Eliminar</a></td>
             </tr>
-             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><button type="button" class="btn btn-primary">Actualizar</button> <button type="button" class="btn btn-danger">Eliminar</button></td>
-            </tr>
-             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td><button type="button" class="btn btn-primary">Actualizar</button> <button type="button" class="btn btn-danger">Eliminar</button></td>
-            </tr>
-          
+            {{/each}}
         </tbody>
     </table>
 
