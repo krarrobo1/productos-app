@@ -8,6 +8,10 @@ router.get('/', async(req, res) => {
     res.render('home', { productos });
 });
 
+router.get('/about', (req, res) => {
+    res.render('about');
+})
+
 router.get('/producto/:id', async(req, res) => {
     let id = req.params.id;
     let producto = await obtenerProductoPorId(id);
