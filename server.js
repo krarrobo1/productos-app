@@ -21,7 +21,7 @@ app.set('view engine', 'hbs');
 
 // Sirviendo la carpeta public
 
-app.use('/', pages);
+app.use(pages);
 
 // Coneccion con MongoDB desplegada en Atlas
 mongoose.connect(process.env.MONGOURI, { useNewUrlParser: true }, (err) => {
