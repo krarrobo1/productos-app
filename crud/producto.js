@@ -12,19 +12,15 @@ const Producto = require('../models/producto');
 // });
 
 // Recibe un objeto con los atributos: nombre, descripcion y precioUnitario
-function crearProducto(body) {
+async function crearProducto(body) {
     let nuevoProducto = new Producto({
         nombre: body.nombre,
         descripcion: body.descripcion,
         precioUnitario: body.precioUnitario
     });
 
-    nuevoProducto.save((err) => {
-        if (err) {
-            console.log('Error', err);
-        }
-        console.log('Producto creado exitosamente: ', nuevoProducto);
-    });
+    let producto = await nuevoProducto.save();
+    return producto;
 }
 
 
@@ -54,20 +50,19 @@ async function obtenerProductoPorId(id) {
     return producto;
 };
 
-function editarProducto(id, body) {
-    Producto.findByIdAndUpdate(id, body, { new: true }, (err, productoDB) => {
+async function editarProducto(id, body) {
+    let productoEditado = await Producto.findByIdAndUpdate(id, body, { new: true }, (err, productoDB) => {
         if (err) throw err;
         if (!productoDB) throw new Error('No se encontro producto con ese ID');
-        console.log('Producto editado exitosamente!');
-        console.log(productoDB);
     });
+
+    return productoEditado;
 }
 
-function eliminarProducto(id) {
-    Producto.findOneAndDelete({ _id: id }, (err, productoDB) => {
+async function eliminarProducto(id) {
+    return await Producto.findByIdAndDelete(id, (err, productoDB) => {
         if (err) throw err;
         if (!productoDB) throw new Error('No se encontro producto con ese ID');
-        console.log('Producto Eliminado', productoDB);
     });
 }
 

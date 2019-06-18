@@ -4,8 +4,12 @@ require('./config/config');
 const express = require('express');
 const hbs = require('hbs');
 const pages = require('./routes/pages');
+const bodyParser = require('body-parser');
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Manejador de MongoDB
 const mongoose = require('mongoose');
@@ -17,15 +21,7 @@ app.set('view engine', 'hbs');
 
 // Sirviendo la carpeta public
 
-
-
-app.use(pages);
-
-
-
-
-
-
+app.use('/', pages);
 
 // Coneccion con MongoDB desplegada en Atlas
 mongoose.connect(process.env.MONGOURI, { useNewUrlParser: true }, (err) => {
