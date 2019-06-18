@@ -1,15 +1,15 @@
-require('../config/config');
+// require('../config/config');
 
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
 
 
 const Producto = require('../models/producto');
-// Coneccion con MongoDB desplegada en Atlas
-mongoose.connect(process.env.MONGOURI, { useNewUrlParser: true }, (err) => {
-    if (err) throw err
-    console.log('Conectado');
-});
+// // Coneccion con MongoDB desplegada en Atlas
+// mongoose.connect(process.env.MONGOURI, { useNewUrlParser: true }, (err) => {
+//     if (err) throw err
+//     console.log('Conectado');
+// });
 
 // Recibe un objeto con los atributos: nombre, descripcion y precioUnitario
 function crearProducto(body) {
@@ -75,11 +75,12 @@ function eliminarProducto(id) {
 
 //obtenerProductos().then(productos => console.log(productos));
 
+/*
 let body = {
     nombre: 'Camiseta Blanca',
     descripcion: 'Es de algodon',
     precioUnitario: 13
-}
+}*/
 
 
 //editarProducto('5d086924b621947bbdc501a8', { nombre: 'Camiseta Azul', precioUnitario: 10 });

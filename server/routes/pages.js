@@ -1,17 +1,18 @@
 const express = require('express');
-const app = express();
-// Engine de plantillas 
-const hbs = require('hbs');
 const router = express.Router();
+const { obtenerTodosLosProductos, obtenerProductoPorId } = require('../crud/producto');
 
-//hbs.registerPartials(__dirname + '/views/parciales');
-hbs.registerPartials(__dirname + '/views/parciales');
-app.set('view engine', 'hbs');
 
-app.get('/', (req, res) => {
-    res.render('home');
+router.get('/', async(req, res) => {
+    let productos = await obtenerTodosLosProductos();
+    res.render('home', { productos });
 });
 
-//app.use('/', router);
+router.get('/update/:id', async(req, res) => {
+    let id = req.params.id;
+    let producto = await obtenerProductoPorId(id);
+    res.render('update', { producto });
+})
 
-module.exports = app;
+
+module.exports = router;
